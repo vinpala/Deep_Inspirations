@@ -28,7 +28,7 @@ async def download_file(url, dest):
             with open(dest, 'wb') as f: f.write(data)
 
 async def setup_learner():
-    await download_file(model_file_url, path/'models'/f'{model_file_name}.pth')
+    await download_file(model_file_url, path/f'{model_file_name}.pth')
     data_lm = TextLMDataBunch.load(path/'static', 'data_lm')
     data_bunch = (TextList.from_csv(path, csv_name='static/blank.csv', vocab=data_lm.vocab)
         .random_split_by_pct()
